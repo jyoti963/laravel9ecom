@@ -16,8 +16,10 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(AdminTableSeeder::class);
         // $this->call(VendorTableSeeders::class);
-        $this->call(VendorBankDetailsSeeder::class);
-        $this->call(VendorBuisnessDetailsSeeder::class);
+        // $this->call(VendorBankDetailsSeeder::class);
+        // $this->call(VendorBuisnessDetailsSeeder::class);
+        $this->call(SectionTableSeeder::class);
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

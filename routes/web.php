@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\SectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,8 +47,13 @@ Route::match(['get','post'],'admin-management/{type?}',[AdminController::class,'
 //Change status for admin table
 Route::get('update-status/{id}', [AdminController::class, 'updateStatus'])->name('admin.updateStatus');
 
+Route::get('sections',[SectionController::class,'section'])->name('admin.sections');
+Route::get('section-update-status/{id}', [SectionController::class, 'updateSectionStatus'])->name('admin.section.updateStatus');
+Route::match(['get','post'],'edit-sections-details/{id}', [SectionController::class, 'editSection'])->name('admin.edit.section');
+Route::get('delete-section/{id}', [SectionController::class, 'deleteSection'])->name('admin.delete.section');
 //Admin Logout Route
 Route::get('logout',[AdminController::class,'logout'])->name('admin.logout');
+
 });
 });
 });

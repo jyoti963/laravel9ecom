@@ -28,7 +28,7 @@
     <section class="section">
         <div class="card">
             <div class="card-body">
-                <table class="table table-striped" id="table1">
+                <table id="myTable" class="table table-striped" id="table1">
                     <thead>
                         <tr>
                             <th>Admin ID</th>

@@ -72,6 +72,24 @@
 
                     </ul>
                 </li>
+
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-hexagon-fill"></i>
+                        <span>Catalogue Management</span>
+                    </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item ">
+                            <a href="{{ route('admin.sections') }}">Sections</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{ url('admin/categories') }}">Categories</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{ url('admin/products') }}">Product</a>
+                        </li>
+                    </ul>
+                </li>
                 @endif
                 <li class="sidebar-title">Forms &amp; Tables</li>
 
