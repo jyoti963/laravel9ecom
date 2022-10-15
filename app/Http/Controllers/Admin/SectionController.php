@@ -16,9 +16,43 @@ class SectionController extends Controller
         return view('admin.sections.section')->with(compact('sections'));
     }
 
+    public function addSection(Request $request)
+    {
+        if ($request->isMethod('post')) {
+
+            $validated = $request->validate([
+                'section_name' => 'required|string',
+                'section_status' => 'required',
+            ]);
+
+            $sec = new Section;
+            $sec->name = $request->input('section_name');
+            $sec->status = $request->input('section_status');
+            $sec->save();
+            // dd($sec);
+            return redirect()->route('admin.sections')->with('success','Section Added Sucessfully!!');
+
+        }
+        return view('admin.sections.add-section');
+    }
+
     public function editSection(Request $request,$id)
     {
+        $data = Section::where('id',$id)->first();
+        if ($request->isMethod('post')) {
 
+            $validated = $request->validate([
+                'section_name' => 'required|string',
+                'section_status' => 'required',
+            ]);
+
+            $sec = Section::find($id);
+            $sec->name = $request->input('section_name');
+            $sec->status = $request->input('section_status');
+            $sec->save();
+            return redirect()->route('admin.sections')->with('success','Section Updated Sucessfully!!');
+        }
+        return view('admin.sections.edit-section')->with(compact('data'));
     }
 
     public function deleteSection($id)

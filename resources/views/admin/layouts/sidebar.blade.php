@@ -14,7 +14,7 @@
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
 
-                <li class="sidebar-item active ">
+                <li class="sidebar-item">
                     <a href="{{ route('admin.dashboard') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
@@ -83,7 +83,7 @@
                             <a href="{{ route('admin.sections') }}">Sections</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="{{ url('admin/categories') }}">Categories</a>
+                            <a href="{{ route('admin.category.index') }}">Categories</a>
                         </li>
                         <li class="submenu-item ">
                             <a href="{{ url('admin/products') }}">Product</a>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SectionController;
 
 /*
@@ -41,16 +42,33 @@ Route::match(['get', 'post'], 'update-admin-details', [AdminController::class,'u
 //Update Vendor Details
 Route::match(['get', 'post'],'update-vendor-details/{slug}', [AdminController::class,'updateVendorDtls']);
 Route::get('view-vendor-details/{id}', [AdminController::class,'viewVendorDtls']);
+//End Update Vendor Details
 
 //Admin Management route
 Route::match(['get','post'],'admin-management/{type?}',[AdminController::class,'adminManage']);
+//End Admin Management route
+
 //Change status for admin table
 Route::get('update-status/{id}', [AdminController::class, 'updateStatus'])->name('admin.updateStatus');
+//End Change status for admin table
 
+// Section Route
 Route::get('sections',[SectionController::class,'section'])->name('admin.sections');
 Route::get('section-update-status/{id}', [SectionController::class, 'updateSectionStatus'])->name('admin.section.updateStatus');
+Route::match(['get','post'],'add-sections-details', [SectionController::class, 'addSection'])->name('admin.add.section');
 Route::match(['get','post'],'edit-sections-details/{id}', [SectionController::class, 'editSection'])->name('admin.edit.section');
 Route::get('delete-section/{id}', [SectionController::class, 'deleteSection'])->name('admin.delete.section');
+//End Section Route
+
+// Category Route
+Route::get('category-update-status/{id}', [CategoryController::class, 'updateSectionStatus'])->name('admin.category.updateStatus');
+Route::get('category',[CategoryController::class,'index'])->name('admin.category.index');
+Route::match(['get','post'],'add-category', [CategoryController::class, 'create'])->name('admin.category.add');
+Route::match(['get','post'],'edit-category/{id}', [CategoryController::class, 'edit'])->name('admin.category.edit');
+Route::get('delete-category/{id}', [CategoryController::class, 'delete'])->name('admin.category.delete');
+// End Category Route
+
+
 //Admin Logout Route
 Route::get('logout',[AdminController::class,'logout'])->name('admin.logout');
 
