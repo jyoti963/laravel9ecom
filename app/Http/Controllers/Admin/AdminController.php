@@ -225,23 +225,21 @@ class AdminController extends Controller
         return view('admin.adminmanage.admins')->with(compact('adminManage', 'title'));
     }
 
-    public function updateStatus($id)
+    public function updateStatus(Request $request)
     {
-        $updateStatus = DB::table('admins')->select('status')->where('id', $id)->first();
+        if($request->ajax()){
+            $data = $request->all();
+            //  print_r($data);die();
+            if($data['status'] == 'Active'){
+                $status = 0;
+            }else{
+                $status = 1;
+            }
 
-        if ($updateStatus->status == 1) {
-            $status = '0';
-        } else {
-            $status = '1';
+            Admin::where('id',$data['admin_id'])->update(['status'=>$status]);
+            return response()->json(['status'=>$status,'admin_id'=>$data['admin_id']]);
         }
 
-        $value = [
-            'status' => $status,
-        ];
-
-        DB::table('admins')->where('id', $id)->update($value);
-
-        return redirect()->back()->with('msg', 'Status Updated Successfully');
     }
 
     public function viewVendorDtls($id)

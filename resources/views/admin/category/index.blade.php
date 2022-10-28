@@ -10,7 +10,7 @@
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                        <a class="btn btn-success btn-sm rounded-pill" href="{{route('admin.category.add')}}">Add Category</a>
+                        <a class="btn btn-success btn-sm rounded-pill" href="{{url('admin/add-edit-category')}}">Add Category</a>
                 </nav>
             </div>
         </div>
@@ -62,29 +62,38 @@
                             @endif
                             <tr>
                                 <td>{{ $category['id'] }}</td>
-                                <td>{{ $category['category_name	'] }}</td>
+                                <td>{{ $category['category_name'] }}</td>
                                 <td>{{ $category['description'] }}</td>
                                 <td>{{ $parent_category }}</td>
                                 <td>{{ $category['section']['name'] }}</td>
-                                <td>{{ $category['url'] }}</td>
+                                <td>
+                                    <a href="#">{{ $category['url'] }}</a>
+                                </td>
                                 <td>{{ $category['category_discount'] }}</td>
                                 <td>{{ $category['meta_title'] }}</td>
                                 <td>{{ $category['meta_description'] }}</td>
                                 <td>{{ $category['meta_keywords'] }}</td>
-                                <td><img src="{{ url("admin/photo/". $category['image'])}}" alt="Image" srcset="" style="height:200px; weight:200px;"></td>
+                                <td><img src="{{ url("admin/image/category_image/". $category['category_image'])}}" alt="Image" srcset="" style="height:100px; weight:100px;"></td>
                                 <td>
-                                    @if($section['status'] == "1")
-                                        <a href="{{route('admin.category.updateStatus', ['id' => $category['id']])}}" class="btn btn-outline-info btn-sm rounded-pill">
-                                            Active
-                                        </a>
-                                        @else
-                                        <a href="{{route('admin.category.updateStatus', ['id' => $category['id']])}}" class="btn btn-outline-danger btn-sm rounded-pill">
-                                            Inactive
-                                        </a>
-                                        @endif
+                                    @if($category['status'] == "1")
+                                <div class="form-check form-switch">
+                                    <a href="javascript:void(0)" class="updateCategoryStatus" id="category-{{ $category['id'] }}" category_id="{{ $category['id'] }}" >
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" status="Active " checked>
+                                    <label class="form-check-label" for="flexSwitchCheckDefault">Active</label>
+
+                                    </a>
+                                </div>
+                                    @elseif ($category['status'] == "0")
+                                    <div class="form-check form-switch">
+                                    <a  href="javascript:void(0)" class="updateCategoryStatus" id="category-{{ $category['id'] }}" category_id="{{ $category['id'] }}" >
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" status="Inactive">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">Inactive</label>
+                                    </a>
+                                </div>
+                                    @endif
                                 </td>
                                 <td>
-                                    <a href="{{route('admin.category.edit',['id' => $category['id']]) }}" class="badge bg-primary btn-sm rounded-pill">Edit</i></a>
+                                    <a href="{{url('admin/add-edit-category',['id' => $category['id']]) }}" class="badge bg-primary btn-sm rounded-pill">Edit</i></a>
                                     <a href="javascript:void(0)" class="badge bg-danger btn-sm rounded-pill confirmDelete" module="category" moduleid="{{ $category['id'] }}">Delete</i></a>
                                 </td>
                             </tr>

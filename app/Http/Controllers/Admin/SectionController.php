@@ -64,26 +64,20 @@ class SectionController extends Controller
          return redirect()->back()->with('delete',$msg);
     }
 
-    public function updateSectionStatus($id)
+    public function updateSectionStatus(Request $request)
     {
-            $updateStatus = DB::table('sections')->select('status')->where('id',$id)->first();
-            //  dd($updateStatus);
-
-            if($updateStatus->status == 1)
-            {
-                $status = '0';
-            }else
-            {
-                $status = '1';
+        if($request->ajax()){
+            $data = $request->all();
+            //  print_r($data);die();
+            if($data['status'] == 'Active'){
+                $status = 0;
+            }else{
+                $status = 1;
             }
 
-            $value = [
-                'status' => $status
-            ];
-
-            DB::table('sections')->where('id',$id)->update($value);
-
-            return redirect()->back()->with('msg','Status Updated Successfully');
+            Section::where('id',$data['section_id'])->update(['status'=>$status]);
+            return response()->json(['status'=>$status,'section_id'=>$data['section_id']]);
+        }
     }
 
 }

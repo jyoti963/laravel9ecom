@@ -11,11 +11,11 @@ class Category extends Model
 
     public function section()
     {
-        return $this->belongsTo('App/Models/Section' , 'section_id')->select('id','name');
+        return $this->belongsTo('App\Models\Section' , 'section_id')->select('id','name');
     }
 
     public function parentCategory()
     {
-        return $this->belongsTo('App/Models/Category' , 'parent_id')->select('id','category_name');
+        return $this->belongsTo('App\Models\Category' , 'parent_id')->select('id','category_name');
     }
 }

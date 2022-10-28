@@ -8,7 +8,9 @@
         </div>
         <div class="card-content">
             <div class="card-body">
-                <form class="form form-vertical" action="{{route('admin.add.section') }}" method="POST" enctype="multipart/form-data">
+                <form class="form form-vertical" @if(!empty($category['id']))action="{{url('admin/add-edit-category') }}"@else
+                action="{{url('admin/add-edit-category/'.$category['id']) }}"
+                @endif  method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-body">
                         <div class="row">
@@ -16,7 +18,9 @@
                                 <div class="form-group has-icon-left">
                                     <label for="first-name-icon">Name</label>
                                     <div class="position-relative">
-                                        <input type="text" class="form-control" placeholder="Enter Category Name" name="category_name">
+                                        <input type="text" class="form-control" placeholder="Enter Category Name" name="category_name" @if(!empty($category['category_name']))
+                                           value="{{ $category['category_name'] }}"@else value="{{ old('category_name') }}"
+                                        @endif>
                                         @error('category_name')
                                         <div style="color: red;">{{ $message }}</div>
                                         @enderror
@@ -27,7 +31,9 @@
                                 <div class="form-group has-icon-left">
                                     <label for="first-name-icon">Category Discount</label>
                                     <div class="position-relative">
-                                        <input type="text" class="form-control" placeholder="Enter Category Discount" name="category_discount">
+                                        <input type="text" class="form-control" placeholder="Enter Category Discount" name="category_discount"  @if(!empty($category['category_discount']))
+                                        value="{{ $category['category_discount'] }}"@else value="{{ old('category_discount') }}"
+                                     @endif>
                                         @error('category_discount')
                                         <div style="color: red;">{{ $message }}</div>
                                         @enderror
@@ -38,7 +44,9 @@
                                 <div class="form-group has-icon-left">
                                     <label for="first-name-icon">Category URL</label>
                                     <div class="position-relative">
-                                        <input type="text" class="form-control" placeholder="Enter Category URL" name="url">
+                                        <input type="text" class="form-control" placeholder="Enter Category URL" name="url" @if(!empty($category['url']))
+                                        value="{{ $category['url'] }}"@else value="{{ old('url') }}"
+                                     @endif>
                                         @error('url')
                                         <div style="color: red;">{{ $message }}</div>
                                         @enderror
@@ -49,7 +57,9 @@
                                 <div class="form-group has-icon-left">
                                     <label for="first-name-icon">Meta Title</label>
                                     <div class="position-relative">
-                                        <input type="text" class="form-control" placeholder="Enter Meta Title" name="meta_title">
+                                        <input type="text" class="form-control" placeholder="Enter Meta Title" name="meta_title" @if(!empty($category['meta_title']))
+                                        value="{{ $category['meta_title'] }}"@else value="{{ old('meta_title') }}"
+                                     @endif>
                                         @error('meta_title')
                                         <div style="color: red;">{{ $message }}</div>
                                         @enderror
@@ -60,7 +70,9 @@
                                 <div class="form-group has-icon-left">
                                     <label for="first-name-icon">Meta Description</label>
                                     <div class="position-relative">
-                                        <input type="text" class="form-control" placeholder="Enter Meta Description" name="meta_description">
+                                        <input type="text" class="form-control" placeholder="Enter Meta Description" name="meta_description" @if(!empty($category['meta_description']))
+                                        value="{{ $category['meta_description'] }}"@else value="{{ old('meta_description') }}"
+                                     @endif>
                                         @error('meta_description')
                                         <div style="color: red;">{{ $message }}</div>
                                         @enderror
@@ -71,7 +83,9 @@
                                 <div class="form-group has-icon-left">
                                     <label for="first-name-icon">Meta Keywords</label>
                                     <div class="position-relative">
-                                        <input type="text" class="form-control" placeholder="Enter Meta Keywords" name="meta_keywords">
+                                        <input type="text" class="form-control" placeholder="Enter Meta Keywords" name="meta_keywords" @if(!empty($category['meta_keywords']))
+                                        value="{{ $category['meta_keywords'] }}"@else value="{{ old('meta_keywords') }}"
+                                     @endif>
                                         @error('meta_keywords')
                                         <div style="color: red;">{{ $message }}</div>
                                         @enderror
@@ -82,30 +96,22 @@
                                 <div class="form-group has-icon-left">
                                     <label for="first-name-icon">Section</label>
                                     <div class="position-relative">
-                                        <select name="section" id="section" class="form-control">
+                                        <select name="section_id" id="section_id" class="form-control">
                                             <option value="">Select Section</option>
                                             @foreach ($getSections as $section)
-                                            <option value="{{ $section['id'] }}">{{ $section['name'] }}</option>
+                                            <option value="{{ $section['id'] }}" @if(!empty($category['section_id']) && $category['section_id'] === $section['id'])
+                                            selected
+                                         @endif>{{ $section['name'] }}</option>
                                             @endforeach
                                         </select>
-                                        @error('section')
+                                        @error('section_id')
                                         <div style="color: red;">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <div class="form-group has-icon-left">
-                                    <label for="first-name-icon">Category Level</label>
-                                    <div class="position-relative">
-                                        <select name="parent_id" id="parent_id" class="form-control">
-                                            <option value="0">Main Category</option>
-                                        </select>
-                                        @error('parent_id')
-                                        <div style="color: red;">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
+                            <div id="appendCategoryLevel">
+                                @include('admin.category.append-category-level')
                             </div>
                             <div class="col-12">
                                 <div class="form-group has-icon-left">
@@ -113,6 +119,9 @@
                                     <div class="position-relative">
                                         <input type="file" class="form-control"
                                              name="category_images">
+                                             @error('category_images')
+                                        <div style="color: red;">{{ $message }}</div>
+                                        @enderror
                                    </div>
                                </div>
                             </div>

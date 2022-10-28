@@ -52,13 +52,20 @@
                             <td><img src="{{ asset('admin/photo/' . $aM['image']) }}" alt="Image" style="height: 100px; width:100px"></td>
                             <td>
                                 @if($aM['status'] == "1")
-                                    <a href="{{route('admin.updateStatus', ['id' => $aM['id']])}}" class="btn btn-outline-info btn-sm rounded-pill">
-                                        Active
+                                <div class="form-check form-switch">
+                                    <a href="javascript:void(0)" class="updateStatus" id="admin-{{ $aM['id'] }}" admin_id="{{ $aM['id'] }}" >
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" status="Active " checked>
+                                    <label class="form-check-label" for="flexSwitchCheckDefault">Active</label>
+
                                     </a>
-                                    @else
-                                    <a href="{{route('admin.updateStatus', ['id' => $aM['id']])}}" class="btn btn-outline-danger btn-sm rounded-pill">
-                                        Inactive
+                                </div>
+                                    @elseif ($aM['status'] == "0")
+                                    <div class="form-check form-switch">
+                                    <a  href="javascript:void(0)" class="updateStatus" id="admin-{{ $aM['id'] }}" admin_id="{{ $aM['id'] }}" >
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" status="Inactive">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">Inactive</label>
                                     </a>
+                                </div>
                                     @endif
                             </td>
                             <td>

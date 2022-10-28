@@ -49,22 +49,21 @@ Route::match(['get','post'],'admin-management/{type?}',[AdminController::class,'
 //End Admin Management route
 
 //Change status for admin table
-Route::get('update-status/{id}', [AdminController::class, 'updateStatus'])->name('admin.updateStatus');
+Route::post('update-admin-status', [AdminController::class, 'updateStatus'])->name('admin.updateStatus');
 //End Change status for admin table
 
 // Section Route
 Route::get('sections',[SectionController::class,'section'])->name('admin.sections');
-Route::get('section-update-status/{id}', [SectionController::class, 'updateSectionStatus'])->name('admin.section.updateStatus');
+Route::post('section-update-status', [SectionController::class, 'updateSectionStatus'])->name('admin.section.updateStatus');
 Route::match(['get','post'],'add-sections-details', [SectionController::class, 'addSection'])->name('admin.add.section');
 Route::match(['get','post'],'edit-sections-details/{id}', [SectionController::class, 'editSection'])->name('admin.edit.section');
 Route::get('delete-section/{id}', [SectionController::class, 'deleteSection'])->name('admin.delete.section');
 //End Section Route
 
 // Category Route
-Route::get('category-update-status/{id}', [CategoryController::class, 'updateSectionStatus'])->name('admin.category.updateStatus');
+Route::post('category-update-status', [CategoryController::class, 'updateCategoryStatus'])->name('admin.category.updateStatus');
 Route::get('category',[CategoryController::class,'index'])->name('admin.category.index');
-Route::match(['get','post'],'add-category', [CategoryController::class, 'create'])->name('admin.category.add');
-Route::match(['get','post'],'edit-category/{id}', [CategoryController::class, 'edit'])->name('admin.category.edit');
+Route::match(['get','post'],'add-edit-category/{id?}', [CategoryController::class, 'addEditCategory'])->name('admin.add.edit.category');
 Route::get('delete-category/{id}', [CategoryController::class, 'delete'])->name('admin.category.delete');
 // End Category Route
 

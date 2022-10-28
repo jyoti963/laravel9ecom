@@ -34,7 +34,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>Name>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -46,13 +46,20 @@
                             <td>{{ $section['name'] }}</td>
                             <td>
                                 @if($section['status'] == "1")
-                                    <a href="{{route('admin.section.updateStatus', ['id' => $section['id']])}}" class="btn btn-outline-info btn-sm rounded-pill">
-                                        Active
+                                <div class="form-check form-switch">
+                                    <a href="javascript:void(0)" class="updateSectionStatus" id="section-{{ $section['id'] }}" section_id="{{ $section['id'] }}" >
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" status="Active " checked>
+                                    <label class="form-check-label" for="flexSwitchCheckDefault">Active</label>
+
                                     </a>
-                                    @else
-                                    <a href="{{route('admin.section.updateStatus', ['id' => $section['id']])}}" class="btn btn-outline-danger btn-sm rounded-pill">
-                                        Inactive
+                                </div>
+                                    @elseif ($section['status'] == "0")
+                                    <div class="form-check form-switch">
+                                    <a  href="javascript:void(0)" class="updateSectionStatus" id="section-{{ $section['id'] }}" section_id="{{ $section['id'] }}" >
+                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" status="Inactive">
+                                        <label class="form-check-label" for="flexSwitchCheckDefault">Inactive</label>
                                     </a>
+                                </div>
                                     @endif
                             </td>
                             <td>
