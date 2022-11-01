@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header">
             <h3>Categories</h3>
-            <h4 class="card-title">Add Categories</h4>
+            <h4 class="card-title">{{ $title }}</h4>
         </div>
         <div class="card-content">
             <div class="card-body">
@@ -137,7 +137,7 @@
                                 </div>
                             </div>
                             <div class="col-12 d-flex justify-content-end">
-                                <button type="submit" class="btn btn-primary me-1 mb-1">Add</button>
+                                <button type="submit" class="btn btn-primary me-1 mb-1">{{ $btn }}</button>
                             </div>
                         </div>
                     </div>

@@ -64,7 +64,8 @@ Route::get('delete-section/{id}', [SectionController::class, 'deleteSection'])->
 Route::post('category-update-status', [CategoryController::class, 'updateCategoryStatus'])->name('admin.category.updateStatus');
 Route::get('category',[CategoryController::class,'index'])->name('admin.category.index');
 Route::match(['get','post'],'add-edit-category/{id?}', [CategoryController::class, 'addEditCategory'])->name('admin.add.edit.category');
-Route::get('delete-category/{id}', [CategoryController::class, 'delete'])->name('admin.category.delete');
+Route::get('append-category-level',[CategoryController::class,'appendCategoryLevel']);
+Route::get('delete-category/{id}', [CategoryController::class, 'deleteCategory'])->name('admin.category.delete');
 // End Category Route
 
 

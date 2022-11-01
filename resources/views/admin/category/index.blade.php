@@ -35,8 +35,7 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Name</th>
-                                <th>Description</th>
+                                <th>Category</th>
                                 <th>Parent Category</th>
                                 <th>Section</th>
                                 <th>URL</th>
@@ -51,9 +50,9 @@
                         </thead>
                         <tbody>
                             @foreach ($categories as $category)
-                            @if(isset($category['parentCategory']['category_name']) && !empty($category['parentCategory']['category_name']))
+                            @if(isset($category['parent_category']['category_name']) && !empty($category['parent_category']['category_name']))
                                 @php
-                                    $parent_category = $category['parentCategory']['category_name'];
+                                    $parent_category = $category['parent_category']['category_name'];
                                 @endphp
                             @else
                                  @php
@@ -63,7 +62,6 @@
                             <tr>
                                 <td>{{ $category['id'] }}</td>
                                 <td>{{ $category['category_name'] }}</td>
-                                <td>{{ $category['description'] }}</td>
                                 <td>{{ $parent_category }}</td>
                                 <td>{{ $category['section']['name'] }}</td>
                                 <td>
