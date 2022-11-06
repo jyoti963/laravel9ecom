@@ -49,6 +49,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{--  <?php $number = 1; ?>  --}}
                             @foreach ($categories as $category)
                             @if(isset($category['parent_category']['category_name']) && !empty($category['parent_category']['category_name']))
                                 @php
@@ -60,7 +61,7 @@
                                  @endphp
                             @endif
                             <tr>
-                                <td>{{ $category['id'] }}</td>
+                                <td>{{ $no++ }}</td>
                                 <td>{{ $category['category_name'] }}</td>
                                 <td>{{ $parent_category }}</td>
                                 <td>{{ $category['section']['name'] }}</td>
@@ -95,6 +96,7 @@
                                     <a href="javascript:void(0)" class="badge bg-danger btn-sm rounded-pill confirmDelete" module="category" moduleid="{{ $category['id'] }}">Delete</i></a>
                                 </td>
                             </tr>
+                            {{--  <?php $number++; ?>  --}}
                             @endforeach
 
                         </tbody>

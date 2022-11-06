@@ -86,6 +86,9 @@
                             <a href="{{ route('admin.category.index') }}">Categories</a>
                         </li>
                         <li class="submenu-item ">
+                            <a href="{{ route('admin.brand.index') }}">Brand</a>
+                        </li>
+                        <li class="submenu-item ">
                             <a href="{{ url('admin/products') }}">Product</a>
                         </li>
                     </ul>

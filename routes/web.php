@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SectionController;
 
@@ -67,6 +68,15 @@ Route::match(['get','post'],'add-edit-category/{id?}', [CategoryController::clas
 Route::get('append-category-level',[CategoryController::class,'appendCategoryLevel']);
 Route::get('delete-category/{id}', [CategoryController::class, 'deleteCategory'])->name('admin.category.delete');
 // End Category Route
+
+//Brand Route
+Route::get('delete-brand/{id}', [BrandController::class, 'destroy']);
+Route::get('brand',[BrandController::class,'index'])->name('admin.brand.index');
+Route::match(['get','post'],'add-brand', [BrandController::class, 'addBrand'])->name('admin.brand.add');
+Route::match(['get','post'],'edit-brand/{id}', [BrandController::class, 'editBrand'])->name('admin.brand.edit');
+Route::post('brand-update-status', [BrandController::class, 'updateBrandStatus']);
+
+
 
 
 //Admin Logout Route

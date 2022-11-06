@@ -222,7 +222,7 @@ class AdminController extends Controller
 
         $adminManage = $adminManage->get()->toArray();
         //  dd($adminManage);
-        return view('admin.adminmanage.admins')->with(compact('adminManage', 'title'));
+        return view('admin.adminmanage.admins',compact('adminManage', 'title'))->with('no',1);
     }
 
     public function updateStatus(Request $request)

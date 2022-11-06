@@ -13,7 +13,7 @@ class SectionController extends Controller
     {
         $sections = Section::all();
         // dd($sections);
-        return view('admin.sections.section')->with(compact('sections'));
+        return view('admin.sections.section',compact('sections'))->with('no', 1);
     }
 
     public function addSection(Request $request)

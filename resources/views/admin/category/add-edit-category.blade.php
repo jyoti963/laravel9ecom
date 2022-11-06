@@ -8,7 +8,7 @@
         </div>
         <div class="card-content">
             <div class="card-body">
-                <form class="form form-vertical" @if(!empty($category['id']))action="{{url('admin/add-edit-category') }}"@else
+                <form class="form form-vertical" @if(empty($category['id']))action="{{url('admin/add-edit-category') }}"@else
                 action="{{url('admin/add-edit-category/'.$category['id']) }}"
                 @endif  method="POST" enctype="multipart/form-data">
                     @csrf

@@ -42,7 +42,7 @@
                     <tbody>
                         @foreach ($sections as $section)
                         <tr>
-                            <td>{{ $section['id'] }}</td>
+                            <td>{{ $no++ }}</td>
                             <td>{{ $section['name'] }}</td>
                             <td>
                                 @if($section['status'] == "1")
@@ -63,8 +63,8 @@
                                     @endif
                             </td>
                             <td>
-                                <a href="{{route('admin.edit.section',['id' => $section['id']]) }}" class="badge bg-primary btn-sm rounded-pill">Edit</i></a>
-                                <a href="javascript:void(0)" class="badge bg-danger btn-sm rounded-pill confirmDelete" module="section" moduleid="{{ $section['id'] }}">Delete</i></a>
+                                <a href="{{route('admin.edit.section',['id' => $section['id']]) }}" class="badge bg-primary btn-sm rounded-pill">Edit</a>
+                                <a href="javascript:void(0)" class="badge bg-danger btn-sm rounded-pill confirmDelete" module="section" moduleid="{{ $section['id'] }}">Delete</a>
                             </td>
                         </tr>
                         @endforeach

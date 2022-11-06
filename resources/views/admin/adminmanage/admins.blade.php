@@ -44,7 +44,7 @@
                     <tbody>
                         @foreach ($adminManage as $aM)
                         <tr>
-                            <td>{{ $aM['id'] }}</td>
+                            <td>{{ $no++ }}</td>
                             <td>{{ $aM['name'] }}</td>
                             <td>{{ $aM['type'] }}</td>
                             <td>{{ $aM['email'] }}</td>

@@ -106,6 +106,32 @@ $(document).ready(function () {
         })
     });
 
+    //Update Brand Status
+    $(document).on("click",".updatebrandStatus",function(){
+        let status = $(this).children("input").attr("status");
+        let brand_id = $(this).attr("brand_id");
+        // alert(admin_id);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+           type:'post',
+           url:'/admin/brand-update-status',
+           data:{status:status,brand_id:brand_id},
+           success:function(resp){
+            // alert(resp);
+            if(resp['status']==0){
+                $("#brand-"+brand_id).html("<input class='form-check-input' type='checkbox' id='flexSwitchCheckDefault' status='Inactive'><label class='form-check-label' for='flexSwitchCheckDefault'>Inactive</label>")
+            }else if(resp['status']==1){
+                $("#brand-"+brand_id).html("<input class='form-check-input' type='checkbox' id='flexSwitchCheckDefault' status='Active' checked><label class='form-check-label' for='flexSwitchCheckDefault'>Active</label>")
+            }
+           },
+           error:function(){
+            alert("Error");
+           }
+        })
+    });
+
     //Append category level
     $('#section_id').change(function(){
         let section_id = $(this).val();
