@@ -8,6 +8,10 @@
         </div>
         <div class="card-content">
             <div class="card-body">
+                @if(Session::has('delete'))
+                <div class="alert alert-danger"><i class="bi bi-file-excel"></i>{{ Session::get('delete') }}
+                </div>
+                @endif
                 <form class="form form-vertical" @if(empty($category['id']))action="{{url('admin/add-edit-category') }}"@else
                 action="{{url('admin/add-edit-category/'.$category['id']) }}"
                 @endif  method="POST" enctype="multipart/form-data">
@@ -119,6 +123,10 @@
                                     <div class="position-relative">
                                         <input type="file" class="form-control"
                                              name="category_images">
+                                        @if(!empty($category['category_image']))
+                                        <a target="_blank" href="{{ url('admin/image/category_image/'.$category['category_image']) }}">View Image</a>&nbsp;&nbsp;
+                                        <a href="javascript:void(0)" class="confirmDelete" module="category-image" moduleid="{{ $category['id'] }}">Delete Image</a>
+                                        @endif
                                              @error('category_images')
                                         <div style="color: red;">{{ $message }}</div>
                                         @enderror
@@ -129,7 +137,7 @@
                                 <div class="form-group has-icon-left">
                                     <label for="first-name-icon">Description</label>
                                     <div class="position-relative">
-                                        <textarea class="form-control" placeholder="Enter Your Description" name="description"></textarea>
+                                        <textarea class="form-control" placeholder="Enter Your Description" name="description">{{ $category['description'] }}</textarea>
                                         @error('description')
                                         <div style="color: red;">{{ $message }}</div>
                                         @enderror

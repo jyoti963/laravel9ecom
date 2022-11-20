@@ -8,6 +8,10 @@
         </div>
         <div class="card-content">
             <div class="card-body">
+                @if(Session::has('delete'))
+                <div class="alert alert-danger"><i class="bi bi-file-excel"></i>{{ Session::get('delete') }}
+                </div>
+                @endif
                 <form class="form form-vertical" @if(empty($product['id']))action="{{url('admin/add-edit-product') }}"@else
                 action="{{url('admin/add-edit-product/'.$product['id']) }}"
                 @endif  method="POST" enctype="multipart/form-data">
@@ -23,9 +27,13 @@
                                             @foreach ($categories as $section)
                                                 <optgroup label="{{ $section['name'] }}"></optgroup>
                                                 @foreach ($section['categories'] as $category)
-                                                   <option value="{{ $category['category_name'] }}">&nbsp;&nbsp;&nbsp;&nbsp;&rAarr;{{ $category['category_name'] }}</option>
+                                                   <option value="{{ $category['id'] }}" @if(!empty($product['category_id'] == $category['id']))
+                                                   selected
+                                                @endif>&nbsp;&nbsp;&nbsp;&nbsp;&rAarr;{{ $category['category_name'] }}</option>
                                                    @foreach ($category['subcategories'] as $subcategory)
-                                                     <option value="{{ $subcategory['category_name'] }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rarr;{{ $subcategory['category_name'] }}</option>
+                                                     <option value="{{ $subcategory['id'] }}" @if(!empty($product['category_id'] == $subcategory['id']))
+                                                     selected
+                                                  @endif>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&rarr;{{ $subcategory['category_name'] }}</option>
                                                    @endforeach
                                                 @endforeach
                                             @endforeach
@@ -43,7 +51,9 @@
                                         <select name="brand_id" id="brand_id" class="form-control">
                                             <option value="">Select Brand</option>
                                             @foreach ($brands as $brand)
-                                               <option value="{{ $brand['id'] }}">{{ $brand['name'] }}</option>
+                                               <option value="{{ $brand['id'] }}" @if(!empty($product['brand_id'] == $brand['id']))
+                                               selected
+                                            @endif>{{ $brand['name'] }}</option>
                                             @endforeach
                                         </select>
                                         @error('brand_id')
@@ -132,16 +142,15 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group has-icon-left">
-                                    <label for="mobile-id-icon">Product Image</label>
+                                    <label for="mobile-id-icon">Product Image (Recommended Size: 1000x1000)</label>
                                     <div class="position-relative">
                                         <input type="file" class="form-control"
-                                             name="product_images">
+                                             name="product_image">
                                         @if(!empty($product['product_image']))
-                                        <a href="{{ url('admin/image/product_images'.$product['product_image']) }}">View Image</a>&nbsp;&nbsp;
+                                        <a target="_blank" href="{{ url('admin/image/product_images/'.$product['product_image']) }}">View Image</a>&nbsp;&nbsp;
                                         <a href="javascript:void(0)" class="confirmDelete" module="product-image" moduleid="{{ $product['id'] }}">Delete Image</a>
-
                                         @endif
-                                             @error('product_images')
+                                             @error('product_image')
                                         <div style="color: red;">{{ $message }}</div>
                                         @enderror
                                    </div>
@@ -149,12 +158,12 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group has-icon-left">
-                                    <label for="mobile-id-icon">Product Video</label>
+                                    <label for="mobile-id-icon">Product Video (Recommended Size Less Then 2 MB)</label>
                                     <div class="position-relative">
                                         <input type="file" class="form-control"
                                              name="product_video">
                                         @if(!empty($product['product_video']))
-                                        <a href="{{ url('admin/videos/product_videos'.$product['product_video']) }}">View Video</a>&nbsp;&nbsp;
+                                        <a target="_blank" href="{{ url('admin/videos/product_videos/'.$product['product_video']) }}">View Video</a>&nbsp;&nbsp;
                                         <a href="javascript:void(0)" class="confirmDelete" module="product-video" moduleid="{{ $product['id'] }}">Delete Video</a>
 
                                         @endif
@@ -168,7 +177,7 @@
                                 <div class="form-group has-icon-left">
                                     <label for="first-name-icon">Product Description</label>
                                     <div class="position-relative">
-                                        <textarea class="form-control" placeholder="Enter Your Description" name="product_description"></textarea>
+                                        <textarea class="form-control" placeholder="Enter Your Description" name="product_description">{{ $product['product_description'] }}</textarea>
                                         @error('product_description')
                                         <div style="color: red;">{{ $message }}</div>
                                         @enderror
@@ -205,10 +214,10 @@
                                 <div class="form-group has-icon-left">
                                     <label for="first-name-icon">Meta Keywords</label>
                                     <div class="position-relative">
-                                        <input type="text" class="form-control" placeholder="Enter Meta Keywords" name="meta_keywords" @if(!empty($product['meta_keywords']))
-                                        value="{{ $product['meta_keywords'] }}"@else value="{{ old('meta_keywords') }}"
+                                        <input type="text" class="form-control" placeholder="Enter Meta Keywords" name="meta_keyword" @if(!empty($product['meta_keyword']))
+                                        value="{{ $product['meta_keyword'] }}"@else value="{{ old('meta_keyword') }}"
                                      @endif>
-                                        @error('meta_keywords')
+                                        @error('meta_keyword')
                                         <div style="color: red;">{{ $message }}</div>
                                         @enderror
                                     </div>

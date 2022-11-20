@@ -68,6 +68,7 @@ Route::get('category',[CategoryController::class,'index'])->name('admin.category
 Route::match(['get','post'],'add-edit-category/{id?}', [CategoryController::class, 'addEditCategory'])->name('admin.add.edit.category');
 Route::get('append-category-level',[CategoryController::class,'appendCategoryLevel']);
 Route::get('delete-category/{id}', [CategoryController::class, 'deleteCategory'])->name('admin.category.delete');
+Route::get('delete-category-image/{id}',[CategoryController::class,'deleteCategoryImage']);
 // End Category Route
 
 //Brand Route
@@ -76,6 +77,7 @@ Route::get('brand',[BrandController::class,'index'])->name('admin.brand.index');
 Route::match(['get','post'],'add-brand', [BrandController::class, 'addBrand'])->name('admin.brand.add');
 Route::match(['get','post'],'edit-brand/{id}', [BrandController::class, 'editBrand'])->name('admin.brand.edit');
 Route::post('brand-update-status', [BrandController::class, 'updateBrandStatus']);
+
 //End Brand Route
 
 //Product Route
@@ -83,6 +85,8 @@ Route::get('product',[ProductController::class,'index'])->name('admin.index.prod
 Route::match(['get','post'],'add-edit-product/{id?}', [ProductController::class, 'addEditProduct'])->name('admin.product.add.edit');
 Route::post('product-update-status', [ProductController::class, 'updateProductStatus']);
 Route::get('delete-product/{id}', [ProductController::class, 'destroy']);
+Route::get('delete-product-image/{id}',[ProductController::class,'deleteProductImage']);
+Route::get('delete-product-video/{id}',[ProductController::class,'deleteProductVideo']);
 //End Product Route
 
 

@@ -66,8 +66,8 @@
                                 <td>{{ $product['product_discount'] }}</td>
                                 <td>{{ $product['meta_title'] }}</td>
                                 <td>{{ $product['meta_description'] }}</td>
-                                <td>{{ $product['meta_keywords'] }}</td>
-                                <td><img src="{{ url("admin/image/product_image/". $product['product_image'])}}" alt="Image" srcset="" style="height:100px; weight:100px;"></td>
+                                <td>{{ $product['meta_keyword'] }}</td>
+                                <td><img src="{{ url("admin/image/product_images/". $product['product_image'])}}" alt="Image" srcset="" style="height:100px; weight:100px;"></td>
                                 <td>
                                     @if($product['status'] == "1")
                                 <div class="form-check form-switch">

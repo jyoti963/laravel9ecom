@@ -130,4 +130,20 @@ class CategoryController extends Controller
 
          return redirect()->back()->with('delete',$msg);
     }
+
+    public function deleteCategoryImage($id)
+    {
+        $categoryImage = Category::select('category_image')->where('id',$id)->first();
+
+        $image_path = 'admin/image/category_image/';
+
+        if (file_exists($image_path.$categoryImage->category_image)) {
+            unlink($image_path.$categoryImage->category_image);
+        }
+
+        Category::where('id',$id)->update(['category_image'=>'']);
+
+         $msg = "Category Image Has Been Deleted Successfully!!";
+         return redirect()->back()->with('delete',$msg);
+    }
 }
