@@ -89,7 +89,7 @@
                             <a href="{{ route('admin.brand.index') }}">Brand</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="{{ url('admin/products') }}">Product</a>
+                            <a href="{{ route('admin.index.product') }}">Product</a>
                         </li>
                     </ul>
                 </li>

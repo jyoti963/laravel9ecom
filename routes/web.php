@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SectionController;
 
 /*
@@ -75,6 +76,14 @@ Route::get('brand',[BrandController::class,'index'])->name('admin.brand.index');
 Route::match(['get','post'],'add-brand', [BrandController::class, 'addBrand'])->name('admin.brand.add');
 Route::match(['get','post'],'edit-brand/{id}', [BrandController::class, 'editBrand'])->name('admin.brand.edit');
 Route::post('brand-update-status', [BrandController::class, 'updateBrandStatus']);
+//End Brand Route
+
+//Product Route
+Route::get('product',[ProductController::class,'index'])->name('admin.index.product');
+Route::match(['get','post'],'add-edit-product/{id?}', [ProductController::class, 'addEditProduct'])->name('admin.product.add.edit');
+Route::post('product-update-status', [ProductController::class, 'updateProductStatus']);
+Route::get('delete-product/{id}', [ProductController::class, 'destroy']);
+//End Product Route
 
 
 

@@ -151,4 +151,30 @@ $(document).ready(function () {
         })
 
     });
+
+    //Update Product Status
+    $(document).on("click",".updateproductStatus",function(){
+        let status = $(this).children("input").attr("status");
+        let product_id = $(this).attr("product_id");
+        // alert(admin_id);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+           type:'post',
+           url:'/admin/product-update-status',
+           data:{status:status,product_id:product_id},
+           success:function(resp){
+            // alert(resp);
+            if(resp['status']==0){
+                $("#product-"+product_id).html("<input class='form-check-input' type='checkbox' id='flexSwitchCheckDefault' status='Inactive'><label class='form-check-label' for='flexSwitchCheckDefault'>Inactive</label>")
+            }else if(resp['status']==1){
+                $("#product-"+product_id).html("<input class='form-check-input' type='checkbox' id='flexSwitchCheckDefault' status='Active' checked><label class='form-check-label' for='flexSwitchCheckDefault'>Active</label>")
+            }
+           },
+           error:function(){
+            alert("Error");
+           }
+        })
+    });
 });
