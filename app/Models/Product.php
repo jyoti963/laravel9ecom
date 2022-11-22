@@ -18,4 +18,14 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\Category' , 'category_id')->select('id','category_name');
     }
+
+    public function attribute()
+    {
+        return $this->hasMany('App\Models\Attribute');
+    }
+
+    public function images()
+    {
+        return $this->hasMany('App\Models\ProductImage');
+    }
 }

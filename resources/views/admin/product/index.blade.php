@@ -87,8 +87,10 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{url('admin/add-edit-product',['id' => $product['id']]) }}" class="badge bg-primary btn-sm rounded-pill">Edit</i></a>
-                                    <a href="javascript:void(0)" class="badge bg-danger btn-sm rounded-pill confirmDelete" module="product" moduleid="{{ $product['id'] }}">Delete</i></a>
+                                    <a href="{{url('admin/add-edit-product',['id' => $product['id']]) }}" ><i class="bi-solid bi-pencil-square" style="color: blue;"></i></a>
+                                    <a href="{{url('admin/add-edit-attributes',['id' => $product['id']]) }}" ><i class="bi bi-plus-circle-fill" style="color: blue;"></i></a>
+                                    <a href="{{url('admin/add-images',['id' => $product['id']]) }}" ><i class="bi bi-image-fill" style="color: blue;"></i></a>
+                                    <a href="javascript:void(0)" class="confirmDelete" module="product" moduleid="{{ $product['id'] }}"><i class="bi-solid bi-trash-fill" style="color: red;"></i></a>
                                 </td>
                             </tr>
                             {{--  <?php $number++; ?>  --}}

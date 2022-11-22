@@ -147,7 +147,7 @@
                                         <input type="file" class="form-control"
                                              name="product_image">
                                         @if(!empty($product['product_image']))
-                                        <a target="_blank" href="{{ url('admin/image/product_images/'.$product['product_image']) }}">View Image</a>&nbsp;&nbsp;
+                                        <a target="_blank" href="{{ url('admin/image/product_images/large/'.$product['product_image']) }}">View Image</a>&nbsp;&nbsp;
                                         <a href="javascript:void(0)" class="confirmDelete" module="product-image" moduleid="{{ $product['id'] }}">Delete Image</a>
                                         @endif
                                              @error('product_image')

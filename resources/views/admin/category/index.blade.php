@@ -92,8 +92,8 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{url('admin/add-edit-category',['id' => $category['id']]) }}" class="badge bg-primary btn-sm rounded-pill">Edit</i></a>
-                                    <a href="javascript:void(0)" class="badge bg-danger btn-sm rounded-pill confirmDelete" module="category" moduleid="{{ $category['id'] }}">Delete</i></a>
+                                    <a href="{{url('admin/add-edit-category',['id' => $category['id']]) }}"><i class="bi-solid bi-pencil-square" style="color: blue;"></i></a>
+                                    <a href="javascript:void(0)" class="confirmDelete" module="category" moduleid="{{ $category['id'] }}"><i class="bi-solid bi-trash-fill" style="color: red;"></i></a>
                                 </td>
                             </tr>
                             {{--  <?php $number++; ?>  --}}

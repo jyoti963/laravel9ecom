@@ -70,7 +70,7 @@
                             </td>
                             <td>
                                 @if($aM['type'] == "vendor")
-                                    <a href="{{ url('admin/view-vendor-details/'.$aM['id']) }}" class="badge bg-secondary btn-sm rounded-pill">View</i></a>
+                                    <a href="{{ url('admin/view-vendor-details/'.$aM['id']) }}" ><i class="bi bi-file-text-fill" style="color: blue;"></i></a>
                                 @endif
                             </td>
                         </tr>

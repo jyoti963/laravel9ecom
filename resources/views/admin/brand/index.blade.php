@@ -63,8 +63,8 @@
                                     @endif
                             </td>
                             <td>
-                                <a href="{{route('admin.brand.edit',$brand['id']) }}" class="badge bg-primary btn-sm rounded-pill">Edit</a>
-                                <a href="javascript:void(0)" class="badge bg-danger btn-sm rounded-pill confirmDelete" module="brand" moduleid="{{ $brand['id'] }}">Delete</a>
+                                <a href="{{route('admin.brand.edit',$brand['id']) }}"><i class="bi-solid bi-pencil-square" style="color: blue;"></a>
+                                <a href="javascript:void(0)" class="confirmDelete" module="brand" moduleid="{{ $brand['id'] }}"><i class="bi-solid bi-trash-fill" style="color: red;"></a>
                             </td>
                         </tr>
                         @endforeach

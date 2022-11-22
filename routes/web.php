@@ -89,6 +89,19 @@ Route::get('delete-product-image/{id}',[ProductController::class,'deleteProductI
 Route::get('delete-product-video/{id}',[ProductController::class,'deleteProductVideo']);
 //End Product Route
 
+//Attributes Routes
+Route::match(['get','post'],'add-edit-attributes/{id}',[ProductController::class,'addAttributes']);
+Route::post('attribute-update-status', [ProductController::class, 'updateAttributeStatus']);
+Route::match(['get','post'],'edit-attributes/{id}',[ProductController::class,'editAttributes']);
+//End Attributes Route
+
+//Images Routes
+Route::match(['get','post'],'add-images/{id}',[ProductController::class,'addImage']);
+Route::post('image-update-status', [ProductController::class, 'updateImageStatus']);
+Route::get('delete-image/{id}',[ProductController::class,'deleteImage']);
+
+//End Images Routes
+
 
 
 

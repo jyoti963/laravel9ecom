@@ -178,4 +178,79 @@ $(document).ready(function () {
         })
     });
 
+    //Add Product Attributes input field
+    var maxField = 10; //Input fields increment limitation
+    var addButton = $('.add_button'); //Add button selector
+    var wrapper = $('.field_wrapper'); //Input field wrapper
+    var fieldHTML = '<div class="mt-2"><input type="text" name="size[]" style="width: 120px;" placeholder="Size"/>&nbsp;<input type="text" name="sku[]" style="width: 120px;" placeholder="SKU"/>&nbsp;<input type="text" name="price[]" style="width: 120px;" placeholder="Price"/>&nbsp;<input type="text" name="stock[]" style="width: 120px;" placeholder="Stock"/>&nbsp;<a href="javascript:void(0);" class="remove_button">Remove</a></div>'; //New input field html
+    var x = 1; //Initial field counter is 1
+
+    //Once add button is clicked
+    $(addButton).click(function(){
+        //Check maximum number of input fields
+        if(x < maxField){
+            x++; //Increment field counter
+            $(wrapper).append(fieldHTML); //Add field html
+        }
+    });
+
+    //Once remove button is clicked
+    $(wrapper).on('click', '.remove_button', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        x--; //Decrement field counter
+    });
+
+    //Update Product Attributes Status
+    $(document).on("click",".updateattributeStatus",function(){
+        let status = $(this).children("input").attr("status");
+        let attribute_id = $(this).attr("attribute_id");
+        // alert(admin_id);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+           type:'post',
+           url:'/admin/attribute-update-status',
+           data:{status:status,attribute_id:attribute_id},
+           success:function(resp){
+            // alert(resp);
+            if(resp['status']==0){
+                $("#attribute-"+attribute_id).html("<input class='form-check-input' type='checkbox' id='flexSwitchCheckDefault' status='Inactive'><label class='form-check-label' for='flexSwitchCheckDefault'>Inactive</label>")
+            }else if(resp['status']==1){
+                $("#attribute-"+attribute_id).html("<input class='form-check-input' type='checkbox' id='flexSwitchCheckDefault' status='Active' checked><label class='form-check-label' for='flexSwitchCheckDefault'>Active</label>")
+            }
+           },
+           error:function(){
+            alert("Error");
+           }
+        })
+    });
+
+    //Update Product Image Status
+    $(document).on("click",".updateimageStatus",function(){
+        let status = $(this).children("input").attr("status");
+        let image_id = $(this).attr("image_id");
+        // alert(admin_id);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+           type:'post',
+           url:'/admin/image-update-status',
+           data:{status:status,image_id:image_id},
+           success:function(resp){
+            // alert(resp);
+            if(resp['status']==0){
+                $("#image-"+image_id).html("<input class='form-check-input' type='checkbox' id='flexSwitchCheckDefault' status='Inactive'><label class='form-check-label' for='flexSwitchCheckDefault'>Inactive</label>")
+            }else if(resp['status']==1){
+                $("#image-"+image_id).html("<input class='form-check-input' type='checkbox' id='flexSwitchCheckDefault' status='Active' checked><label class='form-check-label' for='flexSwitchCheckDefault'>Active</label>")
+            }
+           },
+           error:function(){
+            alert("Error");
+           }
+        })
+    });
+
 });
