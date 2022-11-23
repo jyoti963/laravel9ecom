@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SectionController;
+use App\Http\Controllers\Front\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -111,6 +112,10 @@ Route::get('logout',[AdminController::class,'logout'])->name('admin.logout');
 });
 });
 });
+
+
+//Frontend Routes
+Route::get('/',[IndexController::class,'index']);
 // Route::get('/phpinfo', function() {
 //     return phpinfo();
 // });
