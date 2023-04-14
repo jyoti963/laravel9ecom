@@ -253,4 +253,30 @@ $(document).ready(function () {
         })
     });
 
+    //Update Banner Image Status
+    $(document).on("click",".updateBannerStatus",function(){
+        let status = $(this).children("input").attr("status");
+        let image_id = $(this).attr("image_id");
+        // alert(admin_id);
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+           type:'post',
+           url:'/admin/banner-update-status',
+           data:{status:status,image_id:image_id},
+           success:function(resp){
+            // alert(resp);
+            if(resp['status']==0){
+                $("#banner-"+banner_id).html("<input class='form-check-input' type='checkbox' id='flexSwitchCheckDefault' status='Inactive'><label class='form-check-label' for='flexSwitchCheckDefault'>Inactive</label>")
+            }else if(resp['status']==1){
+                $("#banner-"+banner_id).html("<input class='form-check-input' type='checkbox' id='flexSwitchCheckDefault' status='Active' checked><label class='form-check-label' for='flexSwitchCheckDefault'>Active</label>")
+            }
+           },
+           error:function(){
+            alert("Error");
+           }
+        })
+    });
+
 });

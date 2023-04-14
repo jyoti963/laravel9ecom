@@ -75,6 +75,18 @@
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
+                        <i class="bi bi-image-fill"></i>
+                        <span>Banner Management</span>
+                    </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item ">
+                            <a href="{{ route('admin.banners') }}">Slider Image</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
                         <i class="bi bi-hexagon-fill"></i>
                         <span>Catalogue Management</span>
                     </a>

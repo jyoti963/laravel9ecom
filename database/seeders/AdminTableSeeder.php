@@ -16,7 +16,7 @@ class AdminTableSeeder extends Seeder
     public function run()
     {
         $adminRecords =[
-            ['id'=>2,'name'=>'Juhi','type'=>'vendor','vendor_id'=>'1','image'=>'','mobile'=>'6386739674','email'=>'juhi@test.com','password'=>'$2a$12$of988VbQv5KmMN2OwL2jxen6S7lpihzFfrB/d6PkFxPD6SsTIL6Fm','status'=>1],
+            ['id'=>1,'name'=>'Jyoti','type'=>'admin','vendor_id'=>'','image'=>'','mobile'=>'6386739674','email'=>'admin@admin.com','password'=>'$2a$12$of988VbQv5KmMN2OwL2jxen6S7lpihzFfrB/d6PkFxPD6SsTIL6Fm','status'=>1],
         ];
         Admin::insert($adminRecords);
     }

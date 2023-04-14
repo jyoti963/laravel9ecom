@@ -46,7 +46,7 @@ class ProductController extends Controller
                 'category_id' => 'required',
                 'brand_id' => 'required',
                 'product_name' => 'required|regex:/^[\pL\s\-]+$/u',
-                'product_code' => 'required|regex:/^[\pL\s\-]+$/u',
+                'product_code' => 'required',
                 'product_color' => 'required|regex:/^[\pL\s\-]+$/u',
                 'product_price' => 'required|numeric',
                 'product_discount' => 'required|numeric',

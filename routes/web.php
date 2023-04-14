@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
@@ -103,7 +104,11 @@ Route::get('delete-image/{id}',[ProductController::class,'deleteImage']);
 
 //End Images Routes
 
-
+//Banners Routes
+Route::get('banner',[BannerController::class,'index'])->name('admin.banners');
+Route::match(['get','post'],'add-edit-banner/{id?}',[BannerController::class,'addEditBanner'])->name('admin.addeditbanner');
+Route::post('banner-update-status', [BannerController::class, 'updateBannerStatus']);
+Route::get('delete-banner/{id}',[BannerController::class,'deleteBanner']);
 
 
 //Admin Logout Route

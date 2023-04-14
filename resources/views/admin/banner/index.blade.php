@@ -4,13 +4,13 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Catalogue Management</h3>
-                <h5>Products</h5>
+                <h3>Banner Management</h3>
+                <h5>Slider Image</h5>
                 <p class="text-subtitle text-muted">For admin to check the list</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                        <a class="btn btn-success btn-sm rounded-pill" href="{{url('admin/add-edit-product')}}">Add Product</a>
+                        <a class="btn btn-success btn-sm rounded-pill" href="{{url('admin/add-edit-banner')}}">Add Slider Image</a>
                 </nav>
             </div>
         </div>
@@ -35,51 +35,37 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Product Name</th>
-                                <th>Category </th>
-                                <th>Section </th>
-                                <th>Added By</th>
-                                <th>Discount</th>
-                                <th>Meta Title</th>
-                                <th>Meta Description</th>
-                                <th>Meta Keywords</th>
                                 <th>Image</th>
+                                <th>Title</th>
+                                <th>Link</th>
+                                <th>Alt</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {{--  <?php $number = 1; ?>  --}}
-                            @foreach ($products as $product)
+                            @foreach ($banners as $banner)
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $product['product_name'] }}</td>
-                                <td>{{ $product['category']['category_name'] }}</td>
-                                <td>{{ $product['section']['name'] }}</td>
+                                <td><img src="{{ url("front/banner_images/". $banner['image'])}}" alt="Image" srcset="" style="height:100px; weight:100px;"></td>
+                                <td>{{ $banner['title'] }}</td>
                                 <td>
-                                    @if($product['admin_type'] == 'vendor')
-                                        <a href="{{ url('view-vendor-details/'.$product[admin_id]) }}">{{ ucfirst($product['admin_type']) }}</a>
-                                    @else
-                                        {{ ucfirst($product['admin_type']) }}
-                                    @endif
+                                    <a href="#">{{ $banner['link'] }}</a>
                                 </td>
-                                <td>{{ $product['product_discount'] }}</td>
-                                <td>{{ $product['meta_title'] }}</td>
-                                <td>{{ $product['meta_description'] }}</td>
-                                <td>{{ $product['meta_keyword'] }}</td>
-                                <td><img src="{{ url("admin/image/product_images/large". $product['product_image'])}}" alt="Image" srcset="" style="height:100px; weight:100px;"></td>
+                                <td>{{ $banner['alt'] }}</td>
                                 <td>
-                                    @if($product['status'] == "1")
+                                    @if($banner['status'] == "1")
                                 <div class="form-check form-switch">
-                                    <a href="javascript:void(0)" class="updateproductStatus" id="product-{{ $product['id'] }}" product_id="{{ $product['id'] }}" >
+                                    <a href="javascript:void(0)" class="updateBannerStatus" id="banner-{{ $banner['id'] }}" banner_id="{{ $banner['id'] }}" >
                                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" status="Active " checked>
                                     <label class="form-check-label" for="flexSwitchCheckDefault">Active</label>
 
                                     </a>
                                 </div>
-                                    @elseif ($product['status'] == "0")
+                                    @elseif ($banner['status'] == "0")
                                     <div class="form-check form-switch">
-                                    <a  href="javascript:void(0)" class="updateproductStatus" id="product-{{ $product['id'] }}" product_id="{{ $product['id'] }}" >
+                                    <a  href="javascript:void(0)" class="updateBannerStatus" id="banner-{{ $banner['id'] }}" banner_id="{{ $banner['id'] }}" >
                                         <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" status="Inactive">
                                         <label class="form-check-label" for="flexSwitchCheckDefault">Inactive</label>
                                     </a>
@@ -87,10 +73,8 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{url('admin/add-edit-product',['id' => $product['id']]) }}" ><i class="bi-solid bi-pencil-square" style="color: blue;"></i></a>
-                                    <a href="{{url('admin/add-edit-attributes',['id' => $product['id']]) }}" ><i class="bi bi-plus-circle-fill" style="color: blue;"></i></a>
-                                    <a href="{{url('admin/add-images',['id' => $product['id']]) }}" ><i class="bi bi-image-fill" style="color: blue;"></i></a>
-                                    <a href="javascript:void(0)" class="confirmDelete" module="product" moduleid="{{ $product['id'] }}"><i class="bi-solid bi-trash-fill" style="color: red;"></i></a>
+                                    <a href="{{url('admin/add-edit-banner',['id' => $banner['id']]) }}"><i class="bi-solid bi-pencil-square" style="color: blue;"></i></a>
+                                    <a href="javascript:void(0)" class="confirmDelete" module="banner" moduleid="{{ $banner['id'] }}"><i class="bi-solid bi-trash-fill" style="color: red;"></i></a>
                                 </td>
                             </tr>
                             {{--  <?php $number++; ?>  --}}
