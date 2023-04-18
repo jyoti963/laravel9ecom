@@ -12,6 +12,27 @@
                 <div class="alert alert-danger"><i class="bi bi-file-excel"></i>{{ Session::get('delete') }}
                 </div>
                 @endif
+
+                 {{--  Category Image Modal  --}}
+                <div class="modal fade text-left" id="categoryModal" tabindex="-1"
+                        role="dialog" aria-labelledby="myModalLabel18" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                            role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <img src="{{ url('admin/image/category_image/'.$category['category_image']) }}" alt="Image" style="height: 400px; width:470px;" >
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light-secondary"
+                                        data-bs-dismiss="modal">
+                                        <span class="d-none d-sm-block">Close</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{--  End Category Image Modal  --}}
+
                 <form class="form form-vertical" @if(empty($category['id']))action="{{url('admin/add-edit-category') }}"@else
                 action="{{url('admin/add-edit-category/'.$category['id']) }}"
                 @endif  method="POST" enctype="multipart/form-data">
@@ -124,7 +145,10 @@
                                         <input type="file" class="form-control"
                                              name="category_images">
                                         @if(!empty($category['category_image']))
-                                        <a target="_blank" href="{{ url('admin/image/category_image/'.$category['category_image']) }}">View Image</a>&nbsp;&nbsp;
+                                        <div class="col-sm-6 col-md-6 mt-2">
+                                            <a href="#" data-bs-toggle="modal"
+                                            data-bs-target="#categoryModal">View Image</a>
+                                        </div>
                                         <a href="javascript:void(0)" class="confirmDelete" module="category-image" moduleid="{{ $category['id'] }}">Delete Image</a>
                                         @endif
                                              @error('category_images')

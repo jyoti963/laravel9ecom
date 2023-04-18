@@ -106,7 +106,8 @@ Route::get('delete-image/{id}',[ProductController::class,'deleteImage']);
 
 //Banners Routes
 Route::get('banner',[BannerController::class,'index'])->name('admin.banners');
-Route::match(['get','post'],'add-edit-banner/{id?}',[BannerController::class,'addEditBanner'])->name('admin.addeditbanner');
+Route::match(['get','post'],'add-banner',[BannerController::class,'addBanner'])->name('admin.addbanner');
+Route::match(['get','post'],'edit-banner/{id}',[BannerController::class,'editBanner'])->name('admin.editbanner');
 Route::post('banner-update-status', [BannerController::class, 'updateBannerStatus']);
 Route::get('delete-banner/{id}',[BannerController::class,'deleteBanner']);
 

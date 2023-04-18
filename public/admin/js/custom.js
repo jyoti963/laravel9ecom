@@ -256,7 +256,7 @@ $(document).ready(function () {
     //Update Banner Image Status
     $(document).on("click",".updateBannerStatus",function(){
         let status = $(this).children("input").attr("status");
-        let image_id = $(this).attr("image_id");
+        let banner_id = $(this).attr("banner_id");
         // alert(admin_id);
         $.ajax({
             headers: {
@@ -264,7 +264,7 @@ $(document).ready(function () {
             },
            type:'post',
            url:'/admin/banner-update-status',
-           data:{status:status,image_id:image_id},
+           data:{status:status,banner_id:banner_id},
            success:function(resp){
             // alert(resp);
             if(resp['status']==0){

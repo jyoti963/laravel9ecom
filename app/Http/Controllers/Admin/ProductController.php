@@ -90,13 +90,9 @@ class ProductController extends Controller
                     $extension = $image_tmp->getClientOriginalExtension();
                     // Generate New Image Name
                     $imageName = rand(111,99999).'.'.$extension;
-                    $largeImagePath = 'admin/image/product_images/large/'.$imageName;
-                    $mediumImagePath = 'admin/image/product_images/medium/'.$imageName;
-                    $smallImagePath = 'admin/image/product_images/small/'.$imageName;
+                    $imagePath = 'admin/image/product_images/'.$imageName;
                     // Upload the Image
-                    Image::make($image_tmp)->resize(1000,1000)->save($largeImagePath);
-                    Image::make($image_tmp)->resize(500,500)->save($mediumImagePath);
-                    Image::make($image_tmp)->resize(250,250)->save($smallImagePath);
+                    Image::make($image_tmp)->save($imagePath);
                     $product->product_image = $imageName;
                 }
             }

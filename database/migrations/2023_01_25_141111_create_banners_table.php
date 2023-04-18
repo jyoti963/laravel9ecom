@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('image')->nullable();
             $table->string('title')->nullable();
+            $table->string('type')->nullable();
             $table->string('link')->nullable();
             $table->string('alt')->nullable();
             $table->tinyInteger('status')->default(0);
